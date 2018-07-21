@@ -1,3 +1,47 @@
-<p>
-  progress works!
-</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <div class="progress">
+                    <!-- Para que angular reconozca la var. progreso de 'progress.component.ts'
+                    se debe agregar: [attr.ariaValuenow] y [style.width] y declarar la variable -->
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [attr.ariaValuenow]="progreso1" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso1 + '%'"></div>
+                </div><br>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [attr.ariaValuenow]="progreso2" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso2 + '%'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <!-- Esta llamando al componente incrementador -->
+                <!-- [progreso]: declara una var en number -->
+                <!-- nombre: declara una var en string  -->
+                <!-- estas dos var se usan en incrementador.component.ts -->
+
+                <!-- (actualizaValor): es un @Output, donde se llama asi por
+                el nombre del evento que se asigno en incrementador.component.ts 
+                en ese @Output event esta almacenado el valor de 'progreso' donde 
+                aumenta de 5 en 5 o reduce en -5
+                -->
+                <app-incrementador (actualizaValor)="progreso1 = $event" leyenda="Progress Azul" [progreso]="progreso1"></app-incrementador>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-incrementador (actualizaValor)="progreso2 = $event" leyenda="Progress Verde" [progreso]="progreso2"></app-incrementador>
+            </div>
+        </div>
+    </div>
+</div>
